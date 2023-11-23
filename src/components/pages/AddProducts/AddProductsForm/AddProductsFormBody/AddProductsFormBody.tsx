@@ -45,13 +45,13 @@ export const AddProductsFormBody = () => {
 
   const addProduct = handleSubmit((data, event) => {
     event?.preventDefault();
-    const URL = "http://localhost:8080/sensor/api/products";
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/api/products";
 
     const config: any = {
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("token"),
       },
-
     };
 
     /*console.log("ARCHIVO:")
@@ -60,24 +60,22 @@ export const AddProductsFormBody = () => {
     const productDTO: ProductDTO = {
       name: data.name,
       description: data.description,
-      price: data.price
+      price: data.price,
       // file: data.file
     };
 
-    let producto = JSON.stringify(productDTO)
+    let producto = JSON.stringify(productDTO);
 
     const blob = new Blob([producto], { type: "application/json" });
-   
+
     const formData = new FormData();
 
     let foto = data.file[0];
 
     if (foto == null) {
-
       let sinBlob: string = "";
       const blob2 = new Blob([sinBlob], { type: "multipart/form-data" });
       formData.append("file", blob2, "default.png");
-
     } else {
       formData.append("file", foto);
     }
@@ -128,11 +126,12 @@ export const AddProductsFormBody = () => {
         </div>
 
         <div className=" input-group-outline my-3 ">
-        <label>Descripción:</label>
+          <label>Descripción:</label>
           <input
             type="text"
-            className={`${"form-control"} ${errors.description && "cuadroError"
-              }`}
+            className={`${"form-control"} ${
+              errors.description && "cuadroError"
+            }`}
             placeholder="Descripcion"
             {...register("description", {
               required: {
@@ -150,7 +149,7 @@ export const AddProductsFormBody = () => {
         </div>
 
         <div className="input-group-outline my-3">
-        <label>Precio:</label>
+          <label>Precio:</label>
           <input
             type="number"
             className={`${"form-control"} ${errors.price && "cuadroError"}`}

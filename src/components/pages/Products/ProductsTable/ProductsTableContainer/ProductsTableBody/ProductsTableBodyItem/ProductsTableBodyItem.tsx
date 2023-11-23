@@ -1,23 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK, SUB_SECTION_ROUTE_PRODUCTS_MODIFY, SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK } from "../../../../../../Sidebar/subsections";
+import {
+  SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK,
+  SUB_SECTION_ROUTE_PRODUCTS_MODIFY,
+  SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK,
+} from "../../../../../../Sidebar/subsections";
 import { Product } from "../interfaces";
-import "./styles.css"
-
+import "./styles.css";
 
 export const ProductsTableBodyItem = (prod: Product) => {
-
   const [id, setId] = useState<number>(0);
 
   useEffect(() => {
-    setId(prod.id)
-  }, [])
-
-  
+    setId(prod.id);
+  }, []);
 
   const deleteProduct = () => {
-    const URL = "http://localhost:8080/sensor/api/products" + `/${id}`;
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/products" +
+      `/${id}`;
 
     const config: any = {
       headers: {
@@ -29,16 +31,14 @@ export const ProductsTableBodyItem = (prod: Product) => {
       .delete(URL, config)
       .then((response) => {
         console.log(response);
-        alert("Eliminado el producto " + id)
+        alert("Eliminado el producto " + id);
         window.location.reload();
-
       })
       .catch((error) => {
         console.log(error.response.data);
         console.log(error.response.data.error.message);
       });
   };
-
 
   return (
     <tr className="tr-body">
@@ -81,4 +81,4 @@ export const ProductsTableBodyItem = (prod: Product) => {
       </td>
     </tr>
   );
-}
+};

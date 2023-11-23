@@ -3,67 +3,63 @@ import { ViewStockFormBodyHeader } from "./ViewStockFormBodyHeader/ViewStockForm
 import { ViewStockFormBodyItem } from "./ViewStockFormBodyItem/ViewStockFormBodyItem";
 import axios from "axios";
 
-
 interface stockItemDTO {
-   stockId: number;
-   deviceCode: string;
-   devicePassword: string;
-   placedOnAPhysicalDevice: boolean;
-   }
+  stockId: number;
+  deviceCode: string;
+  devicePassword: string;
+  placedOnAPhysicalDevice: boolean;
+}
 
 export const ViewStockFormBody = () => {
+  const [stock, setStock] = useState<stockItemDTO[]>();
 
-    const [stock, setStock] = useState<stockItemDTO[]>();
+  //const prodID = window.localStorage.getItem("prodID")
 
-    //const prodID = window.localStorage.getItem("prodID")
+  useEffect(() => {
+    //console.log(prodID)
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/products/" +
+      1 +
+      "/stocks";
+    //id de producto
 
-useEffect(() => {
+    const config: any = {
+      headers: {
+        Authorization: "Bearer " + window.localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(URL, config)
+      .then((response) => {
+        setStock(response.data);
 
-  //console.log(prodID)
-  const URL = "http://localhost:8080/sensor/api/products/"+1+"/stocks";
-                                                    //id de producto
-
-  const config: any = {
-    headers: {
-      Authorization: "Bearer " + window.localStorage.getItem("token"),
-    },
-  };
-  axios
-    .get(URL, config)
-    .then((response) => {
-      setStock(response.data);
-
-    //  console.log(response.data)
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-      console.log(error.response.data.error.message);
-    });
-}, []);
+        //  console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        console.log(error.response.data.error.message);
+      });
+  }, []);
 
   return (
     <div className="card-body  px-0 pb-2">
       <div className="table-responsive p-0">
         <table className="table align-items-center mb-0">
-
           <ViewStockFormBodyHeader />
 
           <tbody>
-      {stock?.map((stock) => (
-        <ViewStockFormBodyItem
-          key={stock.stockId}
-          stockId={stock.stockId}
-          deviceCode={stock.deviceCode}
-          devicePassword={stock.devicePassword}
-          placedOnAPhysicalDevice={stock.placedOnAPhysicalDevice}
-          
-        />
-      ))}
-    </tbody>
-      
-
+            {stock?.map((stock) => (
+              <ViewStockFormBodyItem
+                key={stock.stockId}
+                stockId={stock.stockId}
+                deviceCode={stock.deviceCode}
+                devicePassword={stock.devicePassword}
+                placedOnAPhysicalDevice={stock.placedOnAPhysicalDevice}
+              />
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
   );
-}
+};

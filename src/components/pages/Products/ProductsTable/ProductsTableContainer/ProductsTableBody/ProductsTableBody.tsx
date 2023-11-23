@@ -12,7 +12,7 @@ export const ProductsTableBody = () => {
 
 
   useEffect(() => {
-    const URL = "http://localhost:8080/sensor/api/products/all";
+    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/products/all";
 
     const config: any = {
       headers: {

@@ -8,7 +8,7 @@ export const PurchasedHardwareTableBody = () => {
     useState<PurchasedHardware[]>();
 
   useEffect(() => {
-    const URL = "http://localhost:8080/sensor/api/purchased-hardwares/all";
+    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares/all";
     const config: any = {
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("token"),

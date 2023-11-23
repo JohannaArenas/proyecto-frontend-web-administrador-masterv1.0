@@ -5,11 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import { SECTION_ROUTE_PRODUCTS } from "../../../../Sidebar/sections";
 
 type InputsFormsAddStock = {
- stock: number;
+  stock: number;
 };
 
 interface ProductStockDTO {
- quantity: number;
+  quantity: number;
 }
 
 export const AddStockFormBody = () => {
@@ -26,32 +26,33 @@ export const AddStockFormBody = () => {
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState<string>();
 
-
   const { productId } = useParams();
- /* useEffect(() => {
+  /* useEffect(() => {
     const dataUser = JSON.parse(window.localStorage.getItem("user") || "{}");
     setIdUser(dataUser.id);
   }, []);*/
 
   const addStock = handleSubmit((data, event) => {
     event?.preventDefault();
-    const URL = "http://localhost:8080/sensor/api/products/"+1+"/stock";
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/products/" +
+      1 +
+      "/stock";
 
     const config: any = {
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("token"),
       },
-
     };
 
     const productStockDTO: ProductStockDTO = {
-    quantity: data.stock
+      quantity: data.stock,
     };
 
     axios
       .post(URL, productStockDTO, config)
       .then((response) => {
-       // console.log(response);
+        // console.log(response);
         setSuccess("Se agrego el stock correctamente");
         event?.target.reset();
         setError("");
@@ -71,7 +72,7 @@ export const AddStockFormBody = () => {
 
       <form className="text-start" onSubmit={addStock}>
         <div className=" input-group-outline my-3">
-            <label>Cantidad de stock:</label>
+          <label>Cantidad de stock:</label>
           <input
             type="text"
             className={`${"form-control"} ${errors.stock && "cuadroError"}`}

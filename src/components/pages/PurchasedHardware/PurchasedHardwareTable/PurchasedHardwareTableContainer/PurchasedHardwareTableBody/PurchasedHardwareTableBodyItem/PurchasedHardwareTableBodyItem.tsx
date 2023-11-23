@@ -8,15 +8,14 @@ import "./styles.css";
 export const PurchasedHardwareTableBodyItem = (ph: PurchasedHardware) => {
   const [id, setId] = useState<number>(0);
 
-
   useEffect(() => {
     setId(ph.id);
   }, []);
 
-
   const deletePh = () => {
     const URL =
-      "http://localhost:8080/sensor/api/purchased-hardwares" + `/${id}`;
+      "http://https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares" +
+      `/${id}`;
 
     const config: any = {
       headers: {
