@@ -46,7 +46,7 @@ export const AddProductsFormBody = () => {
   const addProduct = handleSubmit((data, event) => {
     event?.preventDefault();
     const URL =
-      "https://proyecto-backend-web-production.up.railway.app/api/products";
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/products";
 
     const config: any = {
       headers: {
