@@ -1,0 +1,19 @@
+.cuadroError{
+    background-color: rgb(228, 169, 179);
+    border-width: 2px;
+    border-color: red;
+}
+
+.mensajeError{
+    color: red;
+}
+
+.imagenProducto{
+    width: 200px;
+    height: 100px;
+    margin-inline: 10px;
+}
+
+/*.preguntaMantenerImagen{
+    padding-left: 30px;
+}*/
