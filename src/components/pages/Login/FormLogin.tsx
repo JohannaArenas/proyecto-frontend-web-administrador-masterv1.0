@@ -52,7 +52,8 @@ export const FormLogin = () => {
 
   const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const URL = "http://localhost:8080/sensor/api/auth/login-admin";
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/auth/login-admin";
 
     const data = {
       email,
