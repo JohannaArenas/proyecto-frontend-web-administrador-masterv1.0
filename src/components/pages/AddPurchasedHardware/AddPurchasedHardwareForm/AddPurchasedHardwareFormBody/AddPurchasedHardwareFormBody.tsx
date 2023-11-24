@@ -31,7 +31,7 @@ export const AddPurchasedHardwareFormBody = () => {
     e.preventDefault();
 
     const URL =
-      "https://proyecto-backend-web-production.up.railway.app/api/purchased-hardwares";
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchasedhardwares";
 
     const config: any = {
       headers: {
