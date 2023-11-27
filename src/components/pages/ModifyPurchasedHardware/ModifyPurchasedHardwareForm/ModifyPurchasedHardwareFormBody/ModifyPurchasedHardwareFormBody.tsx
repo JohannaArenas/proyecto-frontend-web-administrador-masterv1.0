@@ -70,7 +70,7 @@ export const ModifyPurchasedHardwareFormBody = () => {
   const modifyPurchasedHardware = handleSubmit((data, event) => {
     event?.preventDefault();
     const URL =
-      "http://localhost:8080/sensor/api/purchased-hardwares/" +
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares/" +
       purchasedHardwareId;
 
     const config: any = {
