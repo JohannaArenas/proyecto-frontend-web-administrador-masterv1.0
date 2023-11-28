@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { Context } from "vm";
 import { BreadCrums } from "../../containers/ContainerForUseSidebar/ContainerForUseSidebar";
 import { SECTION_ROUTE_CONTACT } from "../../Sidebar/sections";
+import { ContactForm } from "./ContactForm/ContactForm";
 //import { ProductsAddButton } from "./ProductsAddButton/ProductsAddButton";
 //import { ProductsTable } from "./ProductsTable/ProductsTable";
 //import "./styles.css";
@@ -26,7 +27,7 @@ export const Contact = () => {
     <div className="container-fluid py-4">
       <div className="row">
         <div className="col-12">
-          Contacto
+          <ContactForm />
         </div>
       </div>
     </div>

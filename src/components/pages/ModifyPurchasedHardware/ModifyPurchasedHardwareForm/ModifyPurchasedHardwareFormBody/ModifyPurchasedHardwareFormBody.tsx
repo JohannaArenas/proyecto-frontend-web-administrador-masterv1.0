@@ -70,7 +70,7 @@ export const ModifyPurchasedHardwareFormBody = () => {
   const modifyPurchasedHardware = handleSubmit((data, event) => {
     event?.preventDefault();
     const URL =
-      "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares/" +
+      "http://localhost:8080/sensor/api/purchased-hardwares/" +
       purchasedHardwareId;
 
     const config: any = {
@@ -86,7 +86,7 @@ export const ModifyPurchasedHardwareFormBody = () => {
       datePurchase: data.datePurchase,
       provider: data.provider,
       price: data.price,
-      userId: purchasedHardware?.userId,
+      userId:purchasedHardware?.userId
     };
 
     console.log(purchasedHardwareModify);

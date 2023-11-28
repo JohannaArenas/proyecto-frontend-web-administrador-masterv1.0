@@ -7,9 +7,11 @@ import { SalesViewOrderTableBodyItem } from "./SalesViewOrderTableBodyItem/Sales
 //import "./styles.css"
 
 export const SalesViewOrderTableBody = () => {
+
   const [sales, setSales] = useState<Sale[]>();
 
   const getOrdenVentaEstado = () => {
+
     if (localStorage.getItem("token")) {
       const token: string = JSON.stringify(localStorage.getItem("token"));
 
@@ -19,9 +21,7 @@ export const SalesViewOrderTableBody = () => {
 
       const opcionOrden = window.localStorage.getItem("opcionOrden");
 
-      const URL =
-        "https://proyecto-backend-web-production.up.railway.app/sensor/api/sale-orders/admin?state=" +
-        opcionOrden;
+      const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/sale-orders/admin?state=" + opcionOrden;
 
       const config: any = {
         headers: {
@@ -33,18 +33,19 @@ export const SalesViewOrderTableBody = () => {
         .get(URL, config)
         .then((res) => {
           setSales(res.data);
-          console.log(res.data);
+          console.log(res.data)
         })
         .catch((error) => {
           console.log(error.res.data);
           console.log(error.res.data.error.message);
         });
     }
-  };
+  }
 
   useEffect(() => {
     getOrdenVentaEstado();
   }, []);
+
 
   return (
     <tbody>
@@ -61,4 +62,4 @@ export const SalesViewOrderTableBody = () => {
       ))*/}
     </tbody>
   );
-};
+}

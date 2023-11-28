@@ -70,12 +70,12 @@ export const ProductsTableBodyItem = (prod: Product) => {
         ></i>
       </td>
       <td className="align-middle text-center">
-        <Link to={SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK.route}>
+        <Link to={SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK.route + "/" + prod.id}>
           <i className="bi bi-plus icon-black cursor-pointer"></i>
         </Link>
       </td>
       <td className="align-middle text-center">
-        <Link to={SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK.route}>
+        <Link to={SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK.route + "/" + prod.id}>
           <i className="bi bi-eye icon-black cursor-pointer"></i>
         </Link>
       </td>

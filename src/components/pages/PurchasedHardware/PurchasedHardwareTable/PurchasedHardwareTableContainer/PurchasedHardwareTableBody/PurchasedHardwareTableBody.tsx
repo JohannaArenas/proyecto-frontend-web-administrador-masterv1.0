@@ -8,7 +8,8 @@ export const PurchasedHardwareTableBody = () => {
     useState<PurchasedHardware[]>();
 
   useEffect(() => {
-    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares/all";
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/purchased-hardwares/all";
     const config: any = {
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("token"),
@@ -19,22 +20,26 @@ export const PurchasedHardwareTableBody = () => {
       .get(URL, config)
       .then((response) => {
         setPurchasedHardwares(response.data);
-        console.log(response.data)
-
+        console.log(response.data);
       })
       .catch((error) => {
-  
         console.log(error.response.data);
         console.log(error.response.data.error.message);
-
-
       });
   }, []);
 
   return (
     <tbody>
       {purchasedHardwares?.map((ph) => (
-        <PurchasedHardwareTableBodyItem key={ph.id} id={ph.id} name={ph.name} quantity={ph.quantity} datePurchase={ph.datePurchase} provider={ph.provider} price={ph.price} />
+        <PurchasedHardwareTableBodyItem
+          key={ph.id}
+          id={ph.id}
+          name={ph.name}
+          quantity={ph.quantity}
+          datePurchase={ph.datePurchase}
+          provider={ph.provider}
+          price={ph.price}
+        />
       ))}
     </tbody>
   );
