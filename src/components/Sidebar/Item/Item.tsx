@@ -11,7 +11,8 @@ export const Item = ({ nameSection, icon, route }: Props) => {
   return (
     <NavLink
       className={({ isActive }) =>
-        "nav-link text-white mx-3 p-2 border-radius-simple sidebar-item " + (isActive ?'active':'')
+        "nav-link text-white mx-3 p-2 border-radius-simple sidebar-item " +
+        (isActive ? "active" : "")
       }
       to={route}
     >
