@@ -6,8 +6,6 @@ import { SECTION_ROUTE_PRODUCTS } from "../../../../Sidebar/sections";
 import { Product } from "../../../Products/Products";
 import "./styles.css";
 
-
-
 type InputsFormulario = {
   name: string;
   description: string;
@@ -33,18 +31,19 @@ export const ModifyProductsFormBody = () => {
   const [checked, isChecked] = useState<boolean>();
   const { productId } = useParams();
 
-
   const getProduct = () => {
-    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/products/" + productId;
+    const URL =
+      "https://proyecto-backend-web-production.up.railway.app/sensor/api/products/" +
+      productId;
 
     axios
       .get(URL)
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setProduct(res.data);
 
-        setImg(res.data.imageBase64)
-        isChecked(true)
+        setImg(res.data.imageBase64);
+        isChecked(true);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -76,9 +75,8 @@ export const ModifyProductsFormBody = () => {
   });
 
   const ifChecked = () => {
-    isChecked(!checked)
-  }
-
+    isChecked(!checked);
+  };
 
   const modifyProduct = handleSubmit((data, event) => {
     event?.preventDefault();
@@ -94,10 +92,10 @@ export const ModifyProductsFormBody = () => {
       name: data.name,
       description: data.description,
       price: data.price,
-      keepImage: checked
+      keepImage: checked,
     };
 
-    let modificarProducto = JSON.stringify(productModify)
+    let modificarProducto = JSON.stringify(productModify);
 
     const blob = new Blob([modificarProducto], { type: "application/json" });
 
@@ -110,10 +108,9 @@ export const ModifyProductsFormBody = () => {
       formData.append("file", blob2, "default.png");
 
       formData.append("product", blob);
-
     } else {
-      if(data.file != undefined){
-       // console.log (data.file[0])
+      if (data.file != undefined) {
+        // console.log (data.file[0])
         formData.append("file", data.file[0]);
         formData.append("product", blob);
       }
@@ -157,12 +154,12 @@ export const ModifyProductsFormBody = () => {
             <div className={"mensajeError"}>{errors.name.message}</div>
           )}
         </div>
-
         <div className=" input-group-outline my-3">
           <input
             type="text"
-            className={`${"form-control"} ${errors.description && "cuadroError"
-              }`}
+            className={`${"form-control"} ${
+              errors.description && "cuadroError"
+            }`}
             placeholder="Descripcion"
             {...register("description", {
               required: {
@@ -175,7 +172,6 @@ export const ModifyProductsFormBody = () => {
             <span className={"mensajeError"}>{errors.description.message}</span>
           )}
         </div>
-
         <div className=" input-group-outline my-3">
           <input
             type="text"
@@ -192,7 +188,6 @@ export const ModifyProductsFormBody = () => {
             <span className={"mensajeError"}>{errors.price.message}</span>
           )}
         </div>
-
         <div className="input-group-outline my-3">
           <input
             type="file"
@@ -213,20 +208,16 @@ export const ModifyProductsFormBody = () => {
             </span>
           )}
         </div>
-
-        <strong>Imagen original:  </strong>
-
+        <strong>Imagen original: </strong>
         <img className="imagenProducto" src={img}></img>
-
-        <strong >¿Quiere mantener la imagen?</strong> <input type="checkbox" onChange={ifChecked} checked={checked}></input>
-
+        <strong>¿Quiere mantener la imagen?</strong>{" "}
+        <input type="checkbox" onChange={ifChecked} checked={checked}></input>
         <button
           className="btn text-white bg-gradient-primary w-100 my-4 mb-2"
           type="submit"
         >
           Modificar
         </button>
-
         <Link
           className="btn text-white bg bg-primary w-100 my-4 mb-2"
           to={SECTION_ROUTE_PRODUCTS.route}
