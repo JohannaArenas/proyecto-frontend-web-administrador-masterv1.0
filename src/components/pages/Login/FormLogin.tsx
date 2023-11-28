@@ -5,11 +5,16 @@ import { SECTION_ROUTE_PROFILE } from "../../Sidebar/sections";
 import "./styles.css";
 
 export const FormLogin = () => {
+
+
   const navigate = useNavigate();
+
 
   const [email, setEmail] = useState<String>();
   const [password, setPassword] = useState<String>();
   const [badCredentials, setBadCredentials] = useState<String>();
+
+
 
   useEffect(() => {
     document.title = "Login";
@@ -30,12 +35,12 @@ export const FormLogin = () => {
       const values = JSON.parse(payloadDecoded);
       const email = values.email;
 
-      const URL: string =
-        "https://proyecto-backend-web-production.up.railway.app/sensor/api/users";
+      const URL: string = "https://proyecto-backend-web-production.up.railway.app/sensor/api/users";
 
       axios.get(URL, config).then((res) => {
+
         const user = {
-          id: res.data.id,
+          id:res.data.id,
           name: res.data.name,
           lastname: res.data.lastname,
           country: res.data.country,
@@ -50,10 +55,10 @@ export const FormLogin = () => {
     }
   };
 
+
   const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const URL =
-      "https://proyecto-backend-web-production.up.railway.app/sensor/api/auth/login-admin";
+    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/auth/login-admin";
 
     const data = {
       email,
@@ -79,6 +84,7 @@ export const FormLogin = () => {
       });
   };
 
+
   return (
     <main className="main-content  mt-0">
       <div className="bg-login">
@@ -98,11 +104,7 @@ export const FormLogin = () => {
 
                 {/* formulario */}
                 <div className="card-body">
-                  {!!badCredentials && (
-                    <h4 className=" alert alert-danger text-center">
-                      {badCredentials}
-                    </h4>
-                  )}
+                  {!!badCredentials && <h4 className=" alert alert-danger text-center">{badCredentials}</h4>}
 
                   <form className="text-start" onSubmit={login}>
                     <div className="input-group input-group-outline my-3">
