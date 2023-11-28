@@ -86,7 +86,7 @@ export const ModifyPurchasedHardwareFormBody = () => {
       datePurchase: data.datePurchase,
       provider: data.provider,
       price: data.price,
-      userId:purchasedHardware?.userId
+      userId: purchasedHardware?.userId,
     };
 
     console.log(purchasedHardwareModify);
