@@ -6,6 +6,7 @@ import { PurchasedHardware } from "./components/pages/PurchasedHardware/Purchase
 import {
   INDEX,
   MAIN_ROUTE_PANEL_ADMINISTRATOR,
+  SECTION_ROUTE_CONTACT,
   SECTION_ROUTE_PRODUCTS,
   SECTION_ROUTE_PROFILE,
   SECTION_ROUTE_PURCHASED_HARDWARE,
@@ -37,6 +38,7 @@ import { AddProducts } from "./components/pages/AddProducts/AddProducts";
 import { ModifyProducts } from "./components/pages/ModifyProducts/ModifyProducts";
 import { AddStock } from "./components/pages/AddStock/AddStock";
 import { ViewStock } from "./components/pages/ViewStock/ViewStock";
+import { Contact } from "./components/pages/Contact/Contact";
 
 function App() {
   return (
@@ -73,7 +75,8 @@ function App() {
           />
           <Route
             path={
-              SUB_SECTION_ROUTE_PURCHASED_HARDWARE_MODIFY.route + "/:purchasedHardwareId"
+              SUB_SECTION_ROUTE_PURCHASED_HARDWARE_MODIFY.route +
+              "/:purchasedHardwareId"
             }
             element={<ModifyPurchasedHardware />}
           />
@@ -99,17 +102,19 @@ function App() {
             path={SUB_SECTION_ROUTE_PRODUCTS_MODIFY.route + "/:productId"}
             element={<ModifyProducts />}
           />
-        </Route>
-        <Route
-            path={SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK.route /*+ "/:productId"*/}
+          <Route
+            path={
+              SUB_SECTION_ROUTE_PRODUCTS_ADD_STOCK.route + "/:productId"
+            }
             element={<AddStock />}
           />
-            <Route
-            path={SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK.route }
+          <Route
+            path={SUB_SECTION_ROUTE_PRODUCTS_VIEW_STOCK.route + "/:productId"}
             element={<ViewStock />}
           />
+          <Route path={SECTION_ROUTE_CONTACT.route} element={<Contact />} />
+        </Route>
       </Routes>
-
     </Router>
   );
 }
