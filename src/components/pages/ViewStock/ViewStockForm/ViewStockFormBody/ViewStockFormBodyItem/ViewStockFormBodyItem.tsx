@@ -11,14 +11,11 @@ interface stockItemDTO {
 }
 
 export const ViewStockFormBodyItem = (stock: stockItemDTO) => {
-
   const [stockID, setStockID] = useState<number>(0);
 
   useEffect(() => {
     setStockID(stock.stockId);
   }, []);
-
-  
 
   const cambiarEstadoAplicado = () => {
     if (localStorage.getItem("token")) {
@@ -30,23 +27,26 @@ export const ViewStockFormBodyItem = (stock: stockItemDTO) => {
 
       //const opcionOrden = window.localStorage.getItem("opcionOrden");
 
-      const URL = "http://localhost:8080/sensor/api/stocks/" + stockID;
+      const URL =
+        "https://proyecto-backend-web-production.up.railway.app/sensor/api/stocks/" +
+        stockID;
 
       const config: any = {
         headers: {
           Authorization: "Bearer " + window.localStorage.getItem("token"),
         },
       };
-      axios.patch(URL, {}, config)
+      axios
+        .patch(URL, {}, config)
         .then((res) => {
-          console.log("cambiado a VERDADERO")
+          console.log("cambiado a VERDADERO");
         })
         .catch((error) => {
           console.log(error.res.data);
           console.log(error.res.data.error.message);
         });
     }
-  }
+  };
 
   return (
     <tr className="tr-body">
@@ -64,10 +64,13 @@ export const ViewStockFormBodyItem = (stock: stockItemDTO) => {
         <p className="text-xs font-weight-bold mb-0">{stock.devicePassword}</p>
       </td>
       <td className="align-middle text-center text-sm">
-        <input type="checkbox" defaultChecked={stock.placedOnAPhysicalDevice ? true : false} 
-        disabled={stock.placedOnAPhysicalDevice ? true : false}
-        onChange={cambiarEstadoAplicado} ></input>
+        <input
+          type="checkbox"
+          defaultChecked={stock.placedOnAPhysicalDevice ? true : false}
+          disabled={stock.placedOnAPhysicalDevice ? true : false}
+          onChange={cambiarEstadoAplicado}
+        ></input>
       </td>
     </tr>
   );
-}
+};
