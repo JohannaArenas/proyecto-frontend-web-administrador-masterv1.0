@@ -9,8 +9,7 @@ export const UserTableBody = () => {
   const [users, setUsers] = useState<User[]>();
 
   useEffect(() => {
-    const URL =
-      "https://proyecto-backend-web-production.up.railway.app/sensor/api/users/all";
+    const URL = "https://proyecto-backend-web-production.up.railway.app/sensor/api/users/all";
 
     const config: any = {
       headers: {
